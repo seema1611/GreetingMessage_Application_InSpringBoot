@@ -38,4 +38,11 @@ public class GreetingService implements IGreetingService {
     public List<Greeting> getOverallList() {
         return greetingRepository.findAll();
     }
+
+    @Override
+    public Greeting getMessageAfterModification(long id, String fName, String lName) {
+        Greeting update = greetingRepository.findById(id).orElseThrow(() -> new GreetingException("No Greeting Found", GreetingException.ExceptionType.USER_NOT_FOUND));
+        update.setFormat("Hello " + fName + " " + lName);
+        return greetingRepository.save(update);
+    }
 }

@@ -9,4 +9,5 @@ public interface IGreetingService {
     Greeting addGreeting(User user);
     Greeting getById(long id);
     List<Greeting> getOverallList();
+    Greeting getMessageAfterModification(long id, String fName, String lName);
 }

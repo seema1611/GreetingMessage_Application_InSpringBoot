@@ -15,7 +15,8 @@ public class GreetingController {
     IGreetingService iGreetingService;
 
     @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "fName", defaultValue = "Hello world") String firstName, @RequestParam(value = "lName") String lastName) {
+    public Greeting greeting(@RequestParam(value = "fName", defaultValue = "Hello world") String firstName,
+                             @RequestParam(value = "lName") String lastName) {
         User user = new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -31,4 +32,11 @@ public class GreetingController {
     public List<Greeting> getOverallGreetingList() {
         return iGreetingService.getOverallList();
     }
+
+    @PutMapping("/editgreeting/{id}")
+    public Greeting getModifiedMessage(@PathVariable long id, @RequestParam(value = "fName") String fName,
+                                       @RequestParam(value = "lName") String lName) {
+        return iGreetingService.getMessageAfterModification(id, fName, lName);
+    }
+
 }
