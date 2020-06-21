@@ -1,8 +1,8 @@
 package com.greetingapplication.model;
 
 public class Greeting {
-    private long counter;
-    private String name;
+    public long counter;
+    public String name;
 
     public Greeting(long counter, String name) {
         this.counter = counter;
