@@ -6,6 +6,8 @@ import com.greetingapplication.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class GreetingController {
 
@@ -23,5 +25,10 @@ public class GreetingController {
     @GetMapping("/findgreetingbyid")
     public Greeting getGreetingById(@RequestParam(value = "id") long id) {
         return iGreetingService.getById(id);
+    }
+
+    @GetMapping("/listofgreetings")
+    public List<Greeting> getOverallGreetingList() {
+        return iGreetingService.getOverallList();
     }
 }

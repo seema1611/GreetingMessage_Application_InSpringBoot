@@ -8,6 +8,7 @@ import com.greetingapplication.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -31,5 +32,10 @@ public class GreetingService implements IGreetingService {
     public Greeting getById(long id) {
         return greetingRepository.findById(id)
                 .orElseThrow(() -> new GreetingException("No Greeting Found", GreetingException.ExceptionType.USER_NOT_FOUND));
+    }
+
+    @Override
+    public List<Greeting> getOverallList() {
+        return greetingRepository.findAll();
     }
 }
