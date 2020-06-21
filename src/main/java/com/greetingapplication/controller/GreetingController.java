@@ -1,27 +1,27 @@
 package com.greetingapplication.controller;
 
 import com.greetingapplication.model.Greeting;
+import com.greetingapplication.model.User;
+import com.greetingapplication.service.IGreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class GreetingController {
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+
+    @Autowired
+    IGreetingService iGreetingService;
 
     @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name){
-        return new Greeting(counter.incrementAndGet(),String.format(template,name));
+    public Greeting greeting(@RequestParam(value = "fName", defaultValue = "Hello world") String firstName, @RequestParam(value = "lName") String lastName) {
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        return iGreetingService.addGreeting(user);
     }
 
-    @PostMapping("/postgreeting")
-    public Greeting greeting(@RequestBody Greeting greeting) {
-        return new Greeting(counter.incrementAndGet(),String.format(template,greeting.name));
-    }
-
-    @PutMapping("/put{name}")
-    public Greeting greetingUpdate(@PathVariable Greeting greeting) {
-        return new Greeting(counter.incrementAndGet(),String.format(template,greeting.name));
+    @GetMapping("/findgreetingbyid")
+    public Greeting getGreetingById(@RequestParam(value = "id") long id) {
+        return iGreetingService.getById(id);
     }
 }

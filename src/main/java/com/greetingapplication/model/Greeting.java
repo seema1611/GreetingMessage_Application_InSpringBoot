@@ -1,27 +1,29 @@
 package com.greetingapplication.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Greeting")
 public class Greeting {
-    public long counter;
-    public String name;
 
-    public Greeting(long counter, String name) {
-        this.counter = counter;
-        this.name = name;
+    @Id
+    private long id;
+    @Column(name = "message")
+    private String message;
+
+    public long getIncrementAndGet() {
+        return id;
     }
 
-    public long getCounter() {
-        return counter;
+    public void setIncrementAndGet(long id) {
+        this.id = id;
     }
 
-    public void setCounter(long counter) {
-        this.counter = counter;
+    public String getFormat() {
+        return message;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFormat(String message) {
+        this.message = message;
     }
 }

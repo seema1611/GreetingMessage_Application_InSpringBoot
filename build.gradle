@@ -17,6 +17,9 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.6.RELEASE'
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
 }
 
 test {
