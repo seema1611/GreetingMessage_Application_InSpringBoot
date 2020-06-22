@@ -39,4 +39,8 @@ public class GreetingController {
         return iGreetingService.getMessageAfterModification(id, fName, lName);
     }
 
+    @DeleteMapping("/deletebyidandgetupdatedlist")
+    public List<Greeting> deleteByIdAndGetUpdatedList(@RequestParam(value = "id") long id) {
+        return iGreetingService.getUpdatedListAfterDeletionById(id);
+    }
 }

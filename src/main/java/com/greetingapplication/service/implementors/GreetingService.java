@@ -45,4 +45,13 @@ public class GreetingService implements IGreetingService {
         update.setFormat("Hello " + fName + " " + lName);
         return greetingRepository.save(update);
     }
+
+    @Override
+    public List<Greeting> getUpdatedListAfterDeletionById(long id) {
+        Greeting greeting = greetingRepository.findById(id)
+                .orElseThrow(() -> new GreetingException("No Greeting Found", GreetingException.ExceptionType.USER_NOT_FOUND));
+        greetingRepository.delete(greeting);
+        return greetingRepository.findAll();
+
+    }
 }

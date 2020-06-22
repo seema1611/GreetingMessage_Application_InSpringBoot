@@ -10,4 +10,5 @@ public interface IGreetingService {
     Greeting getById(long id);
     List<Greeting> getOverallList();
     Greeting getMessageAfterModification(long id, String fName, String lName);
+    List<Greeting> getUpdatedListAfterDeletionById(long id);
 }
